@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/pjsip-generate-users/static/css/main.95b34419.chunk.css",
+    "main.js": "/pjsip-generate-users/static/js/main.c570e639.chunk.js",
+    "main.js.map": "/pjsip-generate-users/static/js/main.c570e639.chunk.js.map",
+    "runtime-main.js": "/pjsip-generate-users/static/js/runtime-main.1b04464e.js",
+    "runtime-main.js.map": "/pjsip-generate-users/static/js/runtime-main.1b04464e.js.map",
+    "static/js/2.40d0e2e9.chunk.js": "/pjsip-generate-users/static/js/2.40d0e2e9.chunk.js",
+    "static/js/2.40d0e2e9.chunk.js.map": "/pjsip-generate-users/static/js/2.40d0e2e9.chunk.js.map",
+    "index.html": "/pjsip-generate-users/index.html",
+    "static/css/main.95b34419.chunk.css.map": "/pjsip-generate-users/static/css/main.95b34419.chunk.css.map",
+    "static/js/2.40d0e2e9.chunk.js.LICENSE.txt": "/pjsip-generate-users/static/js/2.40d0e2e9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1b04464e.js",
+    "static/js/2.40d0e2e9.chunk.js",
+    "static/css/main.95b34419.chunk.css",
+    "static/js/main.c570e639.chunk.js"
+  ]
+}
