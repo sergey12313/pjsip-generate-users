@@ -1,6 +1,9 @@
 const genUserFromTemplate = ({ name, password, context }) => `[${name}]
 type = endpoint
 context = ${context}
+rtp_symmetric = yes
+direct_media=no
+force_rport=yes
 disallow = all
 allow = ulaw
 aors = ${name}

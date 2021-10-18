@@ -22,11 +22,19 @@ const uplinkAorDefault =
   `[$UPLINK_NAME]\rtype=aor\rcontact=sip:$UPLINK_IP` +
   `\r\r[$UPLINK_NAME]
 type=endpoint
+100rel = no
+rtp_symmetric = yes
+force_rport = yes
+rewrite_contact = yes
+ice_support = no
+direct_media = no
+timers =  no
+inband_progress = yes
 transport=$TRANSPORT_NAME
 context=from_$UPLINK_NAME
 disallow=all
 allow=ulaw
-aors=rtu
+aors=$UPLINK_NAME
 direct_media=no` +
   `\r\r[$UPLINK_NAME]
 type=identify
