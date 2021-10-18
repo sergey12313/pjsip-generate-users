@@ -19,9 +19,11 @@ username=${name}`;
 export const generateUsers = (users) => {
   return users
     .trim()
-    .split("\r")
+    .split("\n")
     .map((el) => {
-      return el.startsWith('"') && el.endsWith('"') ? el.slice(1, -1) : el;
+      const result =
+        el.trim().startsWith('"') && el.endsWith('"') ? el.slice(1, -1) : el;
+      return result;
     })
     .map((el) => el.split(","))
     .map(([name, password]) => ({ name, password }))
