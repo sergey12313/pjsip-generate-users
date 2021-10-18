@@ -11,6 +11,7 @@ auth = auth${name}
  
 [${name}]
 type = aor
+remove_existing = yes
 max_contacts = 1
  
 [auth${name}]
