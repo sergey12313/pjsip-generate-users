@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TextArea from "./components/TextArea";
 import Input from "./components/Input";
 import Header from "./components/Header";
+import ContextBlock from "./components/ContextBlock";
 import { useInput } from "./hooks";
 
 import {
@@ -100,6 +101,7 @@ const App = () => {
         ></TextArea>
         <TextArea value={users} onChange={setUsers} label="Users"></TextArea>
       </div>
+      <ContextBlock />
       <Input value={userList} label="User list" readOnly />
       <TextArea rows={40} value={resultStr} readOnly label="Result"></TextArea>
     </div>
