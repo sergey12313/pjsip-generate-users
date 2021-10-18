@@ -1,4 +1,4 @@
-const genUserFromTemplate = ({name, password})=> `[${name}]
+const genUserFromTemplate = ({ name, password }) => `[${name}]
 type = endpoint
 context = from${name}
 disallow = all
@@ -14,15 +14,17 @@ max_contacts = 1
 type=auth
 auth_type=userpass
 password=${password}
-username=${name}`
+username=${name}`;
 
-export const generateUsers = (users) =>{
-    return users.trim()
-        .split('\r')
-        .map(el=> el.split(","))
-        .map(([name, password])=>({name,password}))
-        .map(genUserFromTemplate)
-        .join('\r\n\r\n')
-    
-
-}
+export const generateUsers = (users) => {
+  return users
+    .trim()
+    .split("\r")
+    .map((el) => {
+      return el.startsWith('"') && el.endsWith('"') ? el.slice(1, -1) : el;
+    })
+    .map((el) => el.split(","))
+    .map(([name, password]) => ({ name, password }))
+    .map(genUserFromTemplate)
+    .join("\r\n\r\n");
+};

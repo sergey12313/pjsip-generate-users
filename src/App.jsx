@@ -42,7 +42,6 @@ const generateConfig = (
     .replaceAll("$TRANSPORT_NAME", transportName)
     .replaceAll("$UPLINK_NAME", uplinkName)
     .replaceAll("$UPLINK_IP", uplinkIp);
-
 };
 
 const App = () => {
@@ -51,7 +50,7 @@ const App = () => {
   const [uplinkName, setUplinkName] = useInput(uplinkNameDefault);
   const [uplinkIp, setUplinkIp] = useInput("192.168.1.1");
   const [uplinkAor, serUplinkAor] = useInput(uplinkAorDefault);
-  const [users, setUsers] = useInput("200,qwerty\r201,qwer123");
+  const [users, setUsers] = useInput(`200,qwerty\r"201,qwer123"`);
   const [resultStr, setResultStr] = useState("");
   useEffect(() => {
     const config = generateConfig(
