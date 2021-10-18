@@ -1,6 +1,6 @@
-const genUserFromTemplate = ({ name, password }) => `[${name}]
+const genUserFromTemplate = ({ name, password, context }) => `[${name}]
 type = endpoint
-context = from${name}
+context = ${context}
 disallow = all
 allow = ulaw
 aors = ${name}
@@ -29,8 +29,17 @@ export const usersParse = (users) => {
     .map(([name, password]) => ({ name, password }));
 };
 
-export const generateUsersConfig = (users) => {
-  return users.map(genUserFromTemplate).join("\r\n\r\n");
+export const generateUsersConfig = (users,  isOneContext, oneContextName) => {
+ const usersWithContext = users.map(user=> {
+   return {
+     context: isOneContext ? oneContextName : `from_${user.name}`,
+     ...user
+   }
+ })
+
+    return usersWithContext.map(genUserFromTemplate).join("\r\n\r\n");
+  
+  
 };
 
 export const generateUserList = (users) => {

@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { useInput } from "../hooks";
+
 import Input from "./Input";
 
-function ContextBlock({ value = true }) {
-  const [contextValue, setContextValue] = useState(value);
+function ContextBlock({ oneContext = true, oneContextChange, contextName, onNameChange }) {
   const handleCheckboxChange = ({ target: { checked } }) => {
-    setContextValue(checked);
+    oneContextChange(checked);
   };
+
+
   return (
     <div>
       <div className="form-group">
-        <label for="check">Identical context:</label>
+        <label htmlFor="check">One context:</label>
         <input
-          for="check"
+          htmlFor="check"
           type="checkbox"
           id="check"
-          checked={contextValue}
+          checked={oneContext}
           onChange={handleCheckboxChange}
         />
-        {contextValue ? <Input label="Context name"></Input> : null}
+        {<Input value={contextName} onChange={onNameChange} disabled={!oneContext} label="Context name"></Input>}
       </div>
     </div>
   );

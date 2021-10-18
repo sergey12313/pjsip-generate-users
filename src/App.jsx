@@ -54,9 +54,11 @@ const App = () => {
   const [transportName, setTransportName] = useInput(transportNameDefault);
   const [uplinkName, setUplinkName] = useInput(uplinkNameDefault);
   const [uplinkIp, setUplinkIp] = useInput("192.168.1.1");
+  const [isOneContext, setIsOneContext] = useState(true);
+  const [oneContextName, setOneContextName] = useInput("from_local");
   const [uplinkAor, serUplinkAor] = useInput(uplinkAorDefault);
   const [users, setUsers] = useInput(`200,qwerty\n"201,qwer123"`);
-  const [userList, setUserList] = useState();
+  const [userList, setUserList] = useState([]);
   const [resultStr, setResultStr] = useState("");
   useEffect(() => {
     const config = generateConfig(
@@ -67,11 +69,11 @@ const App = () => {
       uplinkIp
     );
     const userParsed = usersParse(users);
-    const usersConfig = generateUsersConfig(userParsed);
+    const usersConfig = generateUsersConfig(userParsed, isOneContext, oneContextName);
     const userList = generateUserList(userParsed);
     setUserList(userList);
     setResultStr(config + "\r\n\r\n" + usersConfig);
-  }, [transportValue, transportName, uplinkName, uplinkIp, uplinkAor, users]);
+  }, [transportValue, transportName, uplinkName, uplinkIp, uplinkAor, users,isOneContext, oneContextName ]);
 
   return (
     <div className="container terminal greed">
@@ -101,7 +103,7 @@ const App = () => {
         ></TextArea>
         <TextArea value={users} onChange={setUsers} label="Users"></TextArea>
       </div>
-      <ContextBlock />
+      <ContextBlock  oneContext={isOneContext} oneContextChange={setIsOneContext} contextName={oneContextName} onNameChange={setOneContextName}/>
       <Input value={userList} label="User list" readOnly />
       <TextArea rows={40} value={resultStr} readOnly label="Result"></TextArea>
     </div>
