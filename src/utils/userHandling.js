@@ -16,7 +16,7 @@ auth_type=userpass
 password=${password}
 username=${name}`;
 
-export const generateUsers = (users) => {
+export const usersParse = (users) => {
   return users
     .trim()
     .split("\n")
@@ -26,7 +26,14 @@ export const generateUsers = (users) => {
       return result;
     })
     .map((el) => el.split(","))
-    .map(([name, password]) => ({ name, password }))
-    .map(genUserFromTemplate)
-    .join("\r\n\r\n");
+    .map(([name, password]) => ({ name, password }));
+};
+
+export const generateUsersConfig = (users) => {
+  return users.map(genUserFromTemplate).join("\r\n\r\n");
+};
+
+export const generateUserList = (users) => {
+  const usersString = users.map(({ name }) => `"${name}"`).join(", ");
+  return `export const LOCAL_NUMS = [${usersString}];`;
 };

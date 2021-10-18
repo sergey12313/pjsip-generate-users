@@ -4,7 +4,11 @@ import Input from "./components/Input";
 import Header from "./components/Header";
 import { useInput } from "./hooks";
 
-import { generateUsers } from "./utils/generateUsers";
+import {
+  generateUsersConfig,
+  usersParse,
+  generateUserList,
+} from "./utils/userHandling";
 
 const transportDefault = `[$TRANSPORT_NAME]
 type=transport
@@ -51,6 +55,7 @@ const App = () => {
   const [uplinkIp, setUplinkIp] = useInput("192.168.1.1");
   const [uplinkAor, serUplinkAor] = useInput(uplinkAorDefault);
   const [users, setUsers] = useInput(`200,qwerty\n"201,qwer123"`);
+  const [userList, setUserList] = useState();
   const [resultStr, setResultStr] = useState("");
   useEffect(() => {
     const config = generateConfig(
@@ -60,7 +65,10 @@ const App = () => {
       uplinkName,
       uplinkIp
     );
-    const usersConfig = generateUsers(users);
+    const userParsed = usersParse(users);
+    const usersConfig = generateUsersConfig(userParsed);
+    const userList = generateUserList(userParsed);
+    setUserList(userList);
     setResultStr(config + "\r\n\r\n" + usersConfig);
   }, [transportValue, transportName, uplinkName, uplinkIp, uplinkAor, users]);
 
@@ -92,6 +100,7 @@ const App = () => {
         ></TextArea>
         <TextArea value={users} onChange={setUsers} label="Users"></TextArea>
       </div>
+      <Input value={userList} label="User list" readOnly />
       <TextArea rows={40} value={resultStr} readOnly label="Result"></TextArea>
     </div>
   );
